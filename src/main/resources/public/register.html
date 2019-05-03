@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>New User Page !!!</title>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#createBtn").click(function() {
+			var username = $("#usernameId").val();
+			var password = $("#passwordId").val();
+			var email = $("#emailId").val();
+			var role = $("#roleId").val();
+			var jsonData = {
+				"username" : username,
+				"password" : password,
+				"email" : email,
+				"role" : role
+			}
+			$.ajax({
+				url : 'http://localhost:8080/user/createUser',
+				type : 'POST',
+				contentType : 'application/json',
+				data : JSON.stringify(jsonData),
+				success : function(response) {
+					if (response) 
+						window.location = "login.html";
+				}
+			});
+
+		});
+	});
+</script>
+</head>
+<body>
+	<h1>Creating a new User</h1>
+	Username
+	<input type="text" name="usernameName" id="usernameId" />
+	<br />
+	<br /> Password
+	<input type="password" name="passwordName" id="passwordId" />
+	<br />
+	<br /> Email
+	<input type="text" name="emailName" id="emailId" />
+	<br />
+	<br /> Role
+	<input type="text" name="roleName" id="roleId" />
+	<br />
+	<br />
+	<button id="createBtn">Create</button>
+</body>
+</html>

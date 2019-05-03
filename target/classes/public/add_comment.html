@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Post a Comment</title>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#post").click(function() {
+			var content = $("#textAreaId").val();
+			var creationDate = new Date();
+			var jsonData = {
+				"content" : content,
+				"creationDate" : creationDate,
+				"role" : role
+			}
+			$.ajax({
+				url : 'http://localhost:8080/user/postComment',
+				type : 'GET',
+				contentType : 'application/json',
+				data : JSON.stringify(jsonData),
+				success : function(response) {
+					if(respose)
+						alert("Success");
+				}
+			});
+
+		});
+	});
+</script>
+</head>
+<body>
+	<textarea id="textAreaId" name="textAreaName"></textarea>
+	<br />
+	<br />
+	<button id="post">POST</button>
+</body>
+</html>

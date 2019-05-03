@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Login Page !!!</title>
+<script type="text/javascript"
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		$("#loginBtn").click(function() {
+			var username = $("#usernameId").val();
+			var password = $("#passwordId").val();
+			var jsonData = {
+				"username" : username,
+				"password" : password
+			}
+			$.ajax({
+				url : 'http://localhost:8080/user/loginUser',
+				type : 'POST',
+				contentType : 'application/json',
+				data : JSON.stringify(jsonData),
+				success : function(response) {
+					//alert(JSON.stringify(response));
+					if (response)
+						window.location = "comment.html";
+				}
+			});
+
+		});
+	});
+</script>
+</head>
+<body>
+	<h1>Logging for User</h1>
+	<br />
+	<br /> Username
+	<input type="text" name="usernameName" id="usernameId" />
+	<br />
+	<br /> Password
+	<input type="password" name="passwordName" id="passwordId" />
+	<br />
+	<br />
+	<button id="loginBtn">LOGIN</button>
+</body>
+</html>
